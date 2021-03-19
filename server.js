@@ -3,11 +3,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Item = require('./models/item')
+const dbURI = require('./dbURI')
 
 const app = express()
 const port = 4000
 
-const dbURI = 'mongodb+srv://user1:zx123456@cluster0.h8t3a.mongodb.net/library?retryWrites=true&w=majority'
+// const dbURI = 'mongodb+srv://user1:zx123456@cluster0.h8t3a.mongodb.net/library?retryWrites=true&w=majority'
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => app.listen(port, () => console.log(`listening at http://localhost:${port}`)))
@@ -57,7 +58,7 @@ app.post('/update:id', (req, res) => {
 })
 
 
-app.post('/db', (req, res) => {git rm -r folder-name
+app.post('/db', (req, res) => {
     console.log(req.body)
     res.send(req.body)
 
