@@ -8,8 +8,6 @@ const dbURI = require('./dbURI')
 const app = express()
 const port = 4000
 
-// const dbURI = 'mongodb+srv://user1:zx123456@cluster0.h8t3a.mongodb.net/library?retryWrites=true&w=majority'
-
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => app.listen(port, () => console.log(`listening at http://localhost:${port}`)))
 .catch(err => console.error(err))
