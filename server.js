@@ -26,8 +26,10 @@ app.get('/home', (req, res) => {
   res.send(dataToClient)
 })
 
-app.get('/list', (req, res) => {
-    Item.find()
+app.get('/list:user', (req, res) => {
+    const user = req.params.user
+
+    Item.find({user: user})
     .then( DBresult => res.send(DBresult) ) 
     .catch( err => console.error(err))
 })
