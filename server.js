@@ -37,10 +37,10 @@ app.get('/list:user', (req, res) => {
 app.delete('/list:id', (req, res) => {
     const id = req.params.id
 
-    Item.findByIdAndDelete(id)
+    Item.findOneAndDelete({item_id: id})
     .then(result => {
-        console.log('delete complete')
-        res.send( {note: 'item delete'} )
+        console.log(`delete ${id} complete`)
+        res.send( {note: `item deleted`} )
     })
     .catch(err => console.log('error', err))
 })
@@ -49,7 +49,7 @@ app.post('/update:id', (req, res) => {
     const id = req.params.id
     const title = req.body.title
     
-    Item.findOneAndUpdate({_id: id}, {title: title})
+    Item.findOneAndUpdate({item_id: id}, {title: title})
     .then(result => {
         console.log('update complete')
         res.send( {note: 'item update'} )
@@ -65,8 +65,8 @@ app.post('/db', (req, res) => {
     const item = new Item({
         user: req.body['user'],
         title: req.body['title'],
-        type: req.body['type']
-
+        type: req.body['type'],
+        item_id: req.body['item_id']
     })
 
     item.save()

@@ -13,6 +13,10 @@ const itemSchema = new Schema({
     type: {
         type: String,
         required: true
+    },
+    item_id: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true})
 
